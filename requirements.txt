@@ -4,7 +4,7 @@ binaryornot==0.4.0
 chardet==2.3.0
 click==6.7
 cookiecutter==1.5.1
--e git+https://github.com/HE-Arc/WebGaL.git@ecc6cea9a72618b6c5a18e9b35020086e98a87db#egg=Django
+django==1.10.6
 django-materialize-css==0.0.1
 future==0.16.0
 Jinja2==2.9.5
