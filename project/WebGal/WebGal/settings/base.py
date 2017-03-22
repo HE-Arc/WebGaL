@@ -5,6 +5,9 @@ import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 root = lambda *x: os.path.join(BASE_DIR, *x)
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+TEMPLATE_PATH = PROJECT_PATH + 'main/templates/'
+
 
 sys.path.insert(0, root('apps'))
 
@@ -27,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'main'
+	'main',
+    'materialize'
 ]
 
 PROJECT_APPS = []
@@ -77,22 +81,25 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'main/static')
 
 STATIC_URL = '/static/'
-
 
 # Additional locations of static files
 
 STATICFILES_DIRS = (
-    root('assets'),
+    root('assets'), os.path.join(BASE_DIR, "main/static"),
+
 )
+
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
         'DIRS': [
-            root('templates'),
+            root('templates'),TEMPLATE_PATH
+
         ],
         'OPTIONS': {
             'debug': DEBUG,

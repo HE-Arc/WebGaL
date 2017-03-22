@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"
+          media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{% static 'js/include.js' %}"></script>
+    <title>{% block title %}WebGal{% endblock %}</title>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">WebGal</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Page Layout here -->
+<div class="row">
+
+    <div class="col s3" style="background-color: #90a4ae;">
+        <!-- Grey navigation panel -->
+        <div id="sidenav">
+            {% block sidebar %}
+            <!-- Only for debug -->
+            <span>Sidenav</span>
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="col s9" style="background-color: #26a69a;">
+        <!-- Teal page content  -->
+        <div id="content">
+            {% block content %}
+            <!-- Only for debug -->
+            <span>Content</span>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+<div id="footer">
+    {% block footer %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+    {% endblock %}
+</div>
+</body>
+</html>

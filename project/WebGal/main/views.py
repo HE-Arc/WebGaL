@@ -1,8 +1,10 @@
 from django.http import HttpResponse
-
+from django.template import loader
 
 def index(request):
-    return HttpResponse("You're at the WebGal index.")
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
+
 	
 def project(request):
     return HttpResponse("You're viewing a project.")
