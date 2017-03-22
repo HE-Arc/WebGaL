@@ -7,3 +7,5 @@ Django
 django-model-utils
 
 psycopg2
+
+django-materialize-css
