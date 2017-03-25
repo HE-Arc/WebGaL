@@ -5,6 +5,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"
           media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'main/style.css' %}"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="{% static 'js/include.js' %}"></script>
     <title>{% block title %}WebGal{% endblock %}</title>
@@ -14,12 +15,16 @@
 
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo">WebGal</a>
+        <a href="/" class="brand-logo">WebGal</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Logout</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="#">Profile</a></li>
+              <li><a href="/logout">Logout</a></li>
+            {% else %}
+              <li><a href="/login">Login</a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -37,7 +42,7 @@
         </div>
     </div>
 
-    <div class="col s9" style="background-color: #26a69a;">
+    <div class="col s9">
         <!-- Teal page content  -->
         <div id="content">
             {% block content %}
