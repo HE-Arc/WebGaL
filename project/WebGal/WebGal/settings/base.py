@@ -2,8 +2,10 @@ import os
 import sys
 
 # Auth vars
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
 
 # PATH vars
 
