@@ -15,18 +15,31 @@
 <nav>
     <div class="nav-wrapper indigo darken-4">
         <a href="/" class="brand-logo">WebGal</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-        <ul id="mobile-demo" class="side-nav">
-            {% if user.is_authenticated %}
-              <li><a href="#">Profile</a></li>
-              <li><a href="/logout">Logout</a></li>
-            {% else %}
-              <li><a href="{% url 'login' %}">Login</a></li>
-            {% endif %}
-        </ul>
+            <ul id="mobile-demo" class="side-nav">
+                {% if user.is_authenticated %}
+                <li><a href="#">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}" class="modal-trigger">Login</a></li>
+                <!-- <li><a href="#modal1" class="modal-trigger">Log Out</a></li> -->
+                {% endif %}
+            </ul>
     </div>
 </nav>
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        {% block modal %}
+        {% endblock %}
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
 
 <!-- Page Layout here -->
 <div class="row">
@@ -57,8 +70,9 @@
 <div id="footer">
     {% block footer %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="{% static 'js/include.js' %}"></script>
     <script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+    <script src="{% static 'js/include.js' %}"></script>
+
     {% endblock %}
 </div>
 </body>
