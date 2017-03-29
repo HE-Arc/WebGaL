@@ -7,18 +7,17 @@
           media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'main/style.css' %}"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="{% static 'js/include.js' %}"></script>
     <title>{% block title %}WebGal{% endblock %}</title>
 </head>
 
 <body>
 
 <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper indigo darken-4">
         <a href="/" class="brand-logo">WebGal</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="mobile-demo" class="side-nav">
             {% if user.is_authenticated %}
               <li><a href="#">Profile</a></li>
               <li><a href="/logout">Logout</a></li>
@@ -38,6 +37,7 @@
             {% block sidebar %}
             <!-- Only for debug -->
             <span>Sidenav</span>
+            {% include "sidenav.html" %}
             {% endblock %}
         </div>
     </div>
@@ -57,6 +57,7 @@
 <div id="footer">
     {% block footer %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'js/include.js' %}"></script>
     <script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
     {% endblock %}
 </div>
