@@ -5,6 +5,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"
           media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'main/style.css' %}"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>{% block title %}WebGal{% endblock %}</title>
 </head>
@@ -13,12 +14,17 @@
 
 <nav>
     <div class="nav-wrapper indigo darken-4">
-      <a href="#!" class="brand-logo">Logo</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Log Out</a></li>
-      </ul>
+        <a href="/" class="brand-logo">WebGal</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+        <ul id="mobile-demo" class="side-nav">
+            {% if user.is_authenticated %}
+              <li><a href="#">Profile</a></li>
+              <li><a href="/logout">Logout</a></li>
+            {% else %}
+              <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
     </div>
 </nav>
 
@@ -36,7 +42,7 @@
         </div>
     </div>
 
-    <div class="col s9" style="background-color: #26a69a;">
+    <div class="col s9">
         <!-- Teal page content  -->
         <div id="content">
             {% block content %}
