@@ -6,7 +6,6 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-
 # PATH vars
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,9 +13,7 @@ root = lambda *x: os.path.join(BASE_DIR, *x)
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 TEMPLATE_PATH = PROJECT_PATH + 'main/templates/'
 
-
 sys.path.insert(0, root('apps'))
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'CHANGE THIS!!!'
@@ -36,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'main',
+    'main',
     'materialize'
 ]
 
@@ -85,7 +82,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'main/static')
 
@@ -98,13 +94,12 @@ STATICFILES_DIRS = (
 
 )
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
         'DIRS': [
-            root('templates'),TEMPLATE_PATH
+            root('templates'), TEMPLATE_PATH
 
         ],
         'OPTIONS': {
@@ -120,6 +115,11 @@ TEMPLATES = [
             ],
         },
     }
+]
+
+FILE_UPLOAD_HANDLERS = [
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler"
 ]
 
 # Password validation
@@ -139,13 +139,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # .local.py overrides all the common settings.
 try:
     from .local import *  # noqa
 except ImportError:
     pass
-
 
 # importing test settings file if necessary
 if IN_TESTING:

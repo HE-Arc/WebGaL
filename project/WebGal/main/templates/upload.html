@@ -1,8 +1,16 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h6>Upload</h6>
-<a href="#" class="btn-flat">
-    <i class="btn material-icons">present_to_all</i>
-</a>
+
+<!--{% if user.is_authenticated %}-->
+<form method="post" action="{% url 'index' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="username" value={{ user.get_username }}/>
+    <input type="submit"/>
+</form>
+<!--{% else %}-->
+    <!--<p>You are not supposed to be here. Please log in.</p>-->
+<!--{% endif %}-->
+
 {% endblock %}

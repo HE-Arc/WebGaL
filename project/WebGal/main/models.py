@@ -6,6 +6,7 @@ class Project(models.Model):
     pub_date = models.DateTimeField('date published')
     likes = models.IntegerField(default=0)
     shares = models.IntegerField(default=0)
+    directory = models.SlugField()
 
 
 class User(models.Model):
