@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'main',
-    'materialize'
+    'materialize',
+    'django_seed'
 ]
 
 PROJECT_APPS = []
@@ -77,6 +78,10 @@ DATABASES = {
         'PORT': '',  # Set to empty string for default.
     }
 }
+
+FIXTURES_DIRS =(
+    PROJECT_PATH + 'fixtures/',
+)
 
 # Internationalization
 
