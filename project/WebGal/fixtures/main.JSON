@@ -1,0 +1,10 @@
+[
+  {
+    "model": "myapp.auth_user",
+    "pk": 1,
+    "fields": {
+      "username": "user1",
+      "password": "user1"
+    }
+  }
+]
