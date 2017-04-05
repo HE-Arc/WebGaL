@@ -6,6 +6,11 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+#  registration hmac workflow settings
+ACCOUNT_ACTIVATION_DAYS = 7
+# next two stteings already have those values by default
+# REGISTRATION_OPEN = True
+# REGISTRATION_SALT = "registration"
 
 # PATH vars
 
