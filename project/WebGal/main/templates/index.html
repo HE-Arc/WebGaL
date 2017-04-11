@@ -5,39 +5,57 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"
           media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'main/style.css' %}"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="{% static 'js/include.js' %}"></script>
     <title>{% block title %}WebGal{% endblock %}</title>
 </head>
 
 <body>
 
 <nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo">WebGal</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <div class="nav-wrapper indigo darken-4">
+        <a href="/" class="brand-logo">WebGal</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
+            <ul id="mobile-demo" class="side-nav">
+                {% if user.is_authenticated %}
+                <li><a href="#">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}" class="modal-trigger">Login</a></li>
+                <!-- <li><a href="#modal1" class="modal-trigger">Log Out</a></li> -->
+                {% endif %}
+            </ul>
     </div>
 </nav>
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        {% block modal %}
+        {% endblock %}
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
 
 <!-- Page Layout here -->
 <div class="row">
 
-    <div class="col s3" style="background-color: #90a4ae;">
+    <div class="col s3 indigo lighten-4">
         <!-- Grey navigation panel -->
         <div id="sidenav">
             {% block sidebar %}
             <!-- Only for debug -->
             <span>Sidenav</span>
+            <!--{% include "sidenav.html" %}-->
             {% endblock %}
         </div>
     </div>
 
-    <div class="col s9" style="background-color: #26a69a;">
+    <div class="col s9">
         <!-- Teal page content  -->
         <div id="content">
             {% block content %}
@@ -53,6 +71,8 @@
     {% block footer %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+    <script src="{% static 'js/include.js' %}"></script>
+
     {% endblock %}
 </div>
 </body>

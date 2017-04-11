@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="col s12">
+  <form method="post" action=".">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="row">
+      <button class="btn waves-effect waves-light" type="submit">{% trans 'Submit' %}
+        <i class="material-icons right">input</i>
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

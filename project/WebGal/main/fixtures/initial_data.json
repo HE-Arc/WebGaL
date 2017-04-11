@@ -1,0 +1,19 @@
+[{"model": "auth.user", "pk": 1, "fields": {"password": "1234", "last_login": "1981-12-15T05:12:57Z", "is_superuser": true, "username": "user1", "first_name": "Taylor", "last_name": "Weber", "email": "user1@user1.com", "is_staff": true, "is_active": true, "date_joined": "2002-03-04T12:03:13Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 2, "fields": {"password": "1234", "last_login": "1994-08-02T06:44:18Z", "is_superuser": false, "username": "user2", "first_name": "Laura", "last_name": "Casey", "email": "user2@user2.com", "is_staff": true, "is_active": true, "date_joined": "1987-10-08T03:07:23Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 3, "fields": {"password": "1234", "last_login": "1977-10-30T16:56:48Z", "is_superuser": true, "username": "user3", "first_name": "William", "last_name": "Allen", "email": "user3@user3.com", "is_staff": true, "is_active": false, "date_joined": "1990-03-22T15:09:42Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 4, "fields": {"password": "1234", "last_login": "2010-05-03T08:53:50Z", "is_superuser": false, "username": "user4", "first_name": "Melanie", "last_name": "Arnold", "email": "user4@user4.com", "is_staff": true, "is_active": true, "date_joined": "1999-02-23T08:00:20Z", "groups": [], "user_permissions": []}},
+  {"model": "auth.user", "pk": 5, "fields": {"password": "1234", "last_login": "1998-03-12T21:11:53Z", "is_superuser": true, "username": "user5", "first_name": "Courtney", "last_name": "Gonzalez", "email": "user5@user5.com", "is_staff": false, "is_active": true, "date_joined": "2016-07-17T14:38:13Z", "groups": [], "user_permissions": []}},
+
+  {"model": "main.project", "pk": 1, "fields": {"project_name": "Projet 1", "pub_date": "1995-01-18T14:05:58Z", "likes": 8319, "shares": 2739, "user": 1}},
+  {"model": "main.project", "pk": 2, "fields": {"project_name": "Projet 2", "pub_date": "1971-07-23T04:52:09Z", "likes": 14945, "shares": 25052, "user": 4}},
+  {"model": "main.project", "pk": 3, "fields": {"project_name": "Projet 3", "pub_date": "2016-11-01T18:48:53Z", "likes": -1335, "shares": 17918, "user": 2}},
+  {"model": "main.project", "pk": 4, "fields": {"project_name": "Projet 4", "pub_date": "1985-12-30T08:45:46Z", "likes": -8375, "shares": -22770, "user": 4}},
+  {"model": "main.project", "pk": 5, "fields": {"project_name": "Projet 5", "pub_date": "1980-01-27T22:58:09Z", "likes": 858, "shares": 9863, "user": 3}},
+
+  {"model": "main.comment", "pk": 1, "fields": {"pub_date": "1984-11-07T03:27:04Z", "text": "Quae placeat odit hic minus. Fuga recusandae delectus dolores aut.", "project": 3, "user": 1}},
+  {"model": "main.comment", "pk": 2, "fields": {"pub_date": "2012-06-13T00:28:24Z", "text": "Voluptas accusamus consectetur veritatis nostrum voluptate.\nImpedit facilis deleniti asperiores vel. Repellendus mollitia ducimus atque animi nostrum molestias. Laudantium aspernatur sapiente impedit eaque.", "project": 1, "user": 4}},
+  {"model": "main.comment", "pk": 3, "fields": {"pub_date": "2011-03-14T15:04:16Z", "text": "Impedit corporis minus dicta nobis quis blanditiis tempora cupiditate. Quidem beatae doloremque asperiores perspiciatis nihil enim.", "project": 5, "user": 2}},
+  {"model": "main.comment", "pk": 4, "fields": {"pub_date": "1988-07-30T21:11:39Z", "text": "Nisi nisi sit architecto dignissimos reiciendis.\nPerferendis minus totam earum. Nobis amet vel doloribus omnis excepturi.\nCum consectetur ipsum nihil cumque sit non. Consequatur magni maiores amet possimus. Quos blanditiis nemo animi fuga veniam voluptatem.", "project": 2, "user": 3}},
+  {"model": "main.comment", "pk": 5, "fields": {"pub_date": "2016-09-01T15:19:10Z", "text": "Vel culpa suscipit incidunt accusamus dolore. Asperiores quia accusantium modi necessitatibus sunt.", "project": 4, "user": 5}}
+
+]
