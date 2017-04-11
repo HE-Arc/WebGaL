@@ -144,3 +144,7 @@ except ImportError:
 # importing test settings file if necessary
 if IN_TESTING:
     from .testing import *  # noqa
+
+# overide with production.py if not in DEBUG mode
+if not DEBUG:
+    from .production import *
