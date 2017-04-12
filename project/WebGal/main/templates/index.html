@@ -59,24 +59,25 @@
         <div id="content">
             {% block content %}
             {% for project in allprojects %}
-            <div class="card col s4">
+            <div class="card col s3 indigo lighten-5" style="margin: 10px; padding: 20px; width: 31%;">
                 <div class="card-image">
-                    <img src="images/sample-1.jpg">
-                    <span class="card-title">{{ project.project_name }}</span>
+                    <img src="http://portfoliotheme.org/enigmatic/wp-content/uploads/sites/9/2012/07/placeholder1.jpg">
+                    <!--<img src="{{project.image}}">-->
+                    <span class="card-title" style="padding: 5px; background:rgba(0, 1, 0, 0.5);">{{ project.project_name }}</span>
                 </div>
                 <div class="card-content">
                     <p>{{ project.description }}</p>
                 </div>
-                <div class="card-action">
-                    <form class="col s12" method="post" action="{% url 'index' %}">
-                        <div class="col s3">
-                            <i class="large material-icons">thumb_up</i>
-                            <input value="like" />
-                        </div>
-                        <div class="col s3">
-                            <i class="large material-icons">swap_vertical_circle</i>
-                            <input value="share" />
-                        </div>
+                <div class="card-action" style="padding: 7px;">
+                    <form method="post" action="{% url 'index' %}">
+                        <button class="btn waves-effect waves-light" type="submit" name="like">Like
+                            <i class="small material-icons left">thumb_up</i>
+                             {{project.likes}}
+                        </button>
+                        <button class="btn waves-effect waves-light" type="submit" name="share">Share
+                            <i class="small material-icons left">swap_vertical_circle</i>
+                            {{project.shares}}
+                        </button>
                     </form>
                 </div>
             </div>

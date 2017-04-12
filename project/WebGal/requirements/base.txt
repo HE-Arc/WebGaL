@@ -13,3 +13,5 @@ django-materialize-css
 django-multiupload
 
 django-registration
+
+Pillow

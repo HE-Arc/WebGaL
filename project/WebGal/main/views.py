@@ -1,14 +1,15 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 from django.views.generic.edit import FormView
 from .forms import FileFieldForm
 from .models import Project
 
 
 def index(request):
-    template = loader.get_template('index.html')
-    allprojects = Project.objects.all()
-    return HttpResponse(template.render(), allprojects)
+    allprojects = Project.objects.all().order_by('-pub_date')
+    context = {"allprojects": allprojects}
+    return render(request, 'index.html', context)
 
 
 def project(request):
