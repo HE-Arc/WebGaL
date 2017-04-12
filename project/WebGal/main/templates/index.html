@@ -15,17 +15,17 @@
 <nav>
     <div class="nav-wrapper indigo darken-4">
         <a href="/" class="brand-logo">WebGal</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-            <ul id="mobile-demo" class="side-nav">
-                {% if user.is_authenticated %}
-                <li><a href="#">Profile</a></li>
-                <li><a href="/logout">Logout</a></li>
-                {% else %}
-                <li><a href="{% url 'login' %}" class="modal-trigger">Login</a></li>
-                <!-- <li><a href="#modal1" class="modal-trigger">Log Out</a></li> -->
-                {% endif %}
-            </ul>
+        <ul id="mobile-demo" class="side-nav">
+            {% if user.is_authenticated %}
+            <li><a href="#">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}" class="modal-trigger">Login</a></li>
+            <!-- <li><a href="#modal1" class="modal-trigger">Log Out</a></li> -->
+            {% endif %}
+        </ul>
     </div>
 </nav>
 
@@ -43,7 +43,6 @@
 
 <!-- Page Layout here -->
 <div class="row">
-
     <div class="col s3 indigo lighten-4">
         <!-- Grey navigation panel -->
         <div id="sidenav">
@@ -55,12 +54,33 @@
         </div>
     </div>
 
-    <div class="col s9">
+    <div class="col s9" style="padding: 0px;">
         <!-- Teal page content  -->
         <div id="content">
             {% block content %}
-            <!-- Only for debug -->
-            <span>Content</span>
+            {% for project in allprojects %}
+            <div class="card col s4">
+                <div class="card-image">
+                    <img src="images/sample-1.jpg">
+                    <span class="card-title">{{ project.project_name }}</span>
+                </div>
+                <div class="card-content">
+                    <p>{{ project.description }}</p>
+                </div>
+                <div class="card-action">
+                    <form class="col s12" method="post" action="{% url 'index' %}">
+                        <div class="col s3">
+                            <i class="large material-icons">thumb_up</i>
+                            <input value="like" />
+                        </div>
+                        <div class="col s3">
+                            <i class="large material-icons">swap_vertical_circle</i>
+                            <input value="share" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
             {% endblock %}
         </div>
     </div>

@@ -2,11 +2,13 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views.generic.edit import FormView
 from .forms import FileFieldForm
+from .models import Project
 
 
 def index(request):
     template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+    allprojects = Project.objects.all()
+    return HttpResponse(template.render(), allprojects)
 
 
 def project(request):

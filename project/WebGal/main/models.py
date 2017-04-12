@@ -7,6 +7,7 @@ class Project(models.Model):
     pub_date = models.DateTimeField('date published')
     likes = models.IntegerField(default=0)
     shares = models.IntegerField(default=0)
+    description = models.CharField(max_length=4000)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
 

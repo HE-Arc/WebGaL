@@ -9,3 +9,5 @@ django-model-utils
 psycopg2
 
 django-materialize-css
+
+django-multiupload
