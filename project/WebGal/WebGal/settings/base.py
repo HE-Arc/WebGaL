@@ -17,7 +17,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 root = lambda *x: os.path.join(BASE_DIR, *x)
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
-TEMPLATE_PATH = PROJECT_PATH + 'main/templates/'
+TEMPLATE_PATH = PROJECT_PATH + '/main/templates/'
 
 sys.path.insert(0, root('apps'))
 
@@ -76,7 +76,7 @@ DATABASES = {
     }
 }
 
-FIXTURES_DIRS =(
+FIXTURES_DIRS = (
     PROJECT_PATH + 'fixtures/',
 )
 
@@ -104,13 +104,14 @@ STATICFILES_DIRS = (
 
 )
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
         'DIRS': [
-            root('templates'), TEMPLATE_PATH
-
+            root('templates'), TEMPLATE_PATH,
+            os.path.join(os.path.dirname(os.path.dirname(PROJECT_PATH)), r'main/media')
         ],
         'OPTIONS': {
             'debug': DEBUG,

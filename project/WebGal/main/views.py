@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 from .forms import FileFieldForm
 from .models import Project
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -12,13 +13,26 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def project(request):
-    return HttpResponse("You're viewing a project.")
+def project(request, projectname):
+    context = {"projectname": projectname}
+    return render(request, 'project.html', context)
 
 
 def upload(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
+
+
+def profile(request, username):
+    userid = User.objects.get(username=username)
+    userprojects = Project.objects.filter(user=userid).order_by('-pub_date')
+    context = {"userprojects": userprojects}
+    return render(request, 'profile.html', context)
+
+
+def projectiframe(request, projectname):
+    templatelocation = Project.objects.get(project_name=projectname).location
+    return loader.get_template(projectname)
 
 
 class FileFieldView(FormView):

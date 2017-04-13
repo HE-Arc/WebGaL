@@ -1,16 +1,36 @@
 {% extends 'index.html' %}
 
 {% block content %}
+{% for project in userprojects %}
+<div class="card col s1 m3 indigo lighten-5" style="margin: 10px; padding: 20px; width: 31%;">
+    <div class="card-image">
+        <img src="http://portfoliotheme.org/enigmatic/wp-content/uploads/sites/9/2012/07/placeholder1.jpg">
+        <!--<img src="{{project.image}}">-->
+            <span class="card-title" style="padding: 5px; background:rgba(0, 30, 100, 0.5);"><a
+                    href="{% url 'project' project.project_name %}">{{ project.project_name }}</a></span>
+    </div>
+    <div class="card-content">
+        <p>{{ project.description }}</p>
+        <blockquote>
+            By: <a href="{% url 'profile' project.user %}">{{project.user}}</a> On: {{ project.pub_date }}
+        </blockquote>
+    </div>
+    <div class="card-action" style="padding: 7px;">
+        <form method="post" action="{% url 'index' %}">
+            <button class="btn waves-effect waves-light" type="submit" name="like"
+                    {% if not user.is_authenticated %} disabled {% endif %}>Like
+                <i class="small material-icons left">thumb_up</i>
+                {{project.likes}}
+            </button>
+            <button class="btn waves-effect waves-light" type="submit" name="share"
+                    {% if not user.is_authenticated %} disabled {% endif %}>Share
+                <i class="small material-icons left">swap_vertical_circle</i>
+                {{project.shares}}
+            </button>
+        </form>
+    </div>
+</div>
 
-{% if user.is_authenticated %}
-<form method="post" action="{% url 'index' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="hidden" name="username" value={{ user.get_username }}/>
-    <input type="submit"/>
-</form>
-{% else %}
-<p>You are not supposed to be here. Please log in.</p>
-{% endif %}
+{% endfor %}
 
 {% endblock %}

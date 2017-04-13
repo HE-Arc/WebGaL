@@ -9,6 +9,7 @@ class Project(models.Model):
     shares = models.IntegerField(default=0)
     description = models.CharField(max_length=4000)
     image = models.ImageField()
+    location = models.CharField(max_length=4000)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
 
