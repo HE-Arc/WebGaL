@@ -14,4 +14,4 @@ django-multiupload
 
 django-registration
 
-Pillow
+Pillow==4.0.0

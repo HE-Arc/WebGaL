@@ -1,6 +1,12 @@
 import os
 import sys
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'webgal.hearc@gmail.com'
+EMAIL_HOST_PASSWORD = 'webgal1234'
+
 # Auth vars
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'

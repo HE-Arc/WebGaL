@@ -1,9 +1,9 @@
 from django.template import loader
 from django.shortcuts import render
-from django.contrib.auth.models import User
 from django.utils import timezone
 from .models import Project
 from .forms import UploadProject
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -27,7 +27,8 @@ def upload(request, username):
                               shares=0,
                               description=request.POST.get('description'),
                               image=(request.user.id, request.POST.get('project_name'), request.FILES.get('image')),
-                              files=(request.user.id, request.POST.get('project_name'), request.FILES.get('attachements')),
+                              files=(
+                              request.user.id, request.POST.get('project_name'), request.FILES.get('attachements')),
                               user=request.user.id)
             project.save()
             return render(request, 'profile.html', {"username": username})
