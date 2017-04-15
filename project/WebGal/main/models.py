@@ -14,7 +14,6 @@ class Project(models.Model):
     description = models.TextField(max_length=4000)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     image = models.ImageField(upload_to=upload_to)
-    files = models.FileField(upload_to=upload_to)
 
 
 class Comment(models.Model):

@@ -9,7 +9,7 @@
     <input type="submit" value="Submit" />
 </form>
 {% else %}
-    <p>You are not supposed to be here. Please log in.</p>
+    <p>You are not supposed to be here. Please <a href="{% url 'login' %}">log in</a>.</p>
 {% endif %}
 
 {% endblock %}
