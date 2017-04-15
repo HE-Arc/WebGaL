@@ -33,10 +33,11 @@
                 <i class="small material-icons left">swap_vertical_circle</i>
                 {{project.shares}}
             </button>
-            <button class="btn waves-effect waves-light red accent-1" style="width: 10px; margin: 0;" type="submit" name="delete"
-                    {% if not user.is_authenticated or user != username %} disabled {% endif %}>
+            {% if user.is_authenticated and user == username %}
+            <button class="btn waves-effect waves-light red accent-1" style="width: 10px; margin: 0;" type="submit" name="delete">
                 <i class="tiny material-icons red-text text-lighten-1 right">delete</i>
             </button>
+            {% endif %}
         </form>
     </div>
 </div>
