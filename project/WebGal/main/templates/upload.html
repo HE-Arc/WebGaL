@@ -2,15 +2,14 @@
 
 {% block content %}
 
-<!--{% if user.is_authenticated %}-->
-<form method="post" action="{% url 'index' %}">
+{% if user.is_authenticated %}
+<form action="{% url 'upload' username %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="hidden" name="username" value={{ user.get_username }}/>
-    <input type="submit"/>
+    {{ form }}
+    <input type="submit" value="Submit" />
 </form>
-<!--{% else %}-->
-    <!--<p>You are not supposed to be here. Please log in.</p>-->
-<!--{% endif %}-->
+{% else %}
+    <p>You are not supposed to be here. Please log in.</p>
+{% endif %}
 
 {% endblock %}

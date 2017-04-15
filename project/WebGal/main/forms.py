@@ -1,8 +1,9 @@
 from django import forms
+from multiupload.fields import MultiFileField
 
 
-class FileFieldForm(forms.Form):
-    project_name = forms.CharField(max_length=254,
-                                   widget=forms.TextInput(attrs={'autofocus': ''}),
-                                   label="Project Name")
-    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+class UploadProject(forms.Form):
+    project_name = forms.CharField(label='Project Name', max_length=100)
+    description = forms.CharField(label='Description', max_length=4000,widget=forms.Textarea)
+    image = forms.ImageField(label='Thumbnail')
+    attachments = MultiFileField(label='Project Files', min_num=1)
