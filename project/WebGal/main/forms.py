@@ -7,3 +7,6 @@ class UploadProject(forms.Form):
     description = forms.CharField(label='Description', max_length=4000,widget=forms.Textarea)
     image = forms.ImageField(label='Thumbnail')
     attachments = MultiFileField(label='Project Files', min_num=1)
+
+class AddComment(forms.Form):
+    text = forms.CharField(widget=forms.Textarea)
