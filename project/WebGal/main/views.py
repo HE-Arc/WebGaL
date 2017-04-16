@@ -17,32 +17,33 @@ def index(request):
 def project(request, projectname):
     id = Project.objects.get(project_name=projectname)
     comments = Comment.objects.filter(project_id=id).order_by('-pub_date')
-    context = {"projectname": projectname, "username": request.user, "comments":comments}
+    context = {"projectname": projectname, "userid": request.user.id, "comments":comments}
     return render(request, 'project.html', context)
 
 
-def handle_project_files(files, username, projectname):
-    directory = settings.MEDIA_ROOT + '/' + username + '/' + projectname
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    zip_ref = zipfile.ZipFile(directory, 'r')
+def handle_project_files(user, projectname, files):
+    directory = settings.MEDIA_ROOT + '/media/' + str(user.id) + '/' + projectname
+    zip_ref = zipfile.ZipFile(directory + '/' + str(files), 'r')
     zip_ref.extractall(directory)
     zip_ref.close()
+    os.remove(directory + '/' + str(files))
 
 
 def upload(request, username):
     if request.method == 'POST':
         form = UploadProject(request.POST, request.FILES)
         if form.is_valid():
-            handle_project_files(request.FILES.get('attachements'), request.user, request.POST.get('project_name'))
             project = Project(project_name=request.POST.get('project_name'),
                               pub_date=timezone.now(),
                               likes=0,
                               shares=0,
                               description=request.POST.get('description'),
-                              image=(request.user, request.POST.get('project_name'), request.FILES.get('image')),
+                              image=request.FILES.get('image'),
+                              files=request.FILES.get('attachments'),
                               user=request.user)
             project.save()
+            print(request.FILES.get('attachments'))
+            handle_project_files(request.user, request.POST.get('project_name'), request.FILES.get('attachments'))
             return render(request, 'profile.html', {"username": username})
         else:
             return render(request, 'upload.html', {'form': form, "username": username})
