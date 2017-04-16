@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Project, Comment
-from .forms import UploadProject
+from .forms import UploadProject,AddComment
 from django.conf import settings
 from django.contrib.auth.models import User
 import os
@@ -16,8 +16,22 @@ def index(request):
 
 def project(request, projectname):
     id = Project.objects.get(project_name=projectname)
+    if request.method == 'POST':
+        if 'addComment' in request.POST:
+            form = AddComment(request.POST)
+            if form.is_valid():
+                comment = Comment(pub_date=timezone.now(),
+                                  text=request.POST.get('text'),
+                                  project=id,
+                                  user=request.user)
+                comment.save()
+        if 'deleteComment' in request.POST:
+            comment_id = int(request.POST.get('comment_id'))
+            comment = Comment.objects.get(id=comment_id)
+            comment.delete()
     comments = Comment.objects.filter(project_id=id).order_by('-pub_date')
-    context = {"projectname": projectname, "userid": request.user.id, "comments":comments}
+    form = AddComment()
+    context = {"projectname": projectname, "userid": request.user.id, "comments":comments, "form":form}
     return render(request, 'project.html', context)
 
 

@@ -9,15 +9,37 @@
                   <span class="card-title  indigo-text text-darken-4">{{ comment.pub_date }}</span>
                     <p>{{ comment.text }}</p>
                 </div>
-                <div class="card-action">
+                <div class="card-action" style="padding:5px;">
                    <blockquote>
                         By: <a href="{% url 'profile' project.user %}">{{comment.user}}</a>
+                       {% if userid == comment.user_id %}
+                            <form action="{% url 'project' projectname %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" name="comment_id" value="{{comment.id}}" />
+                                <button class="btn-floating btn waves-effect waves-light red" type="submit" name="deleteComment">
+                                    <i class="material-icons right">delete</i>
+                                </button>
+                            </form>
+                         {% endif %}
                     </blockquote>
                 </div>
             </div>
         {% endfor %}
-        <!-- Work in progres -->
-        <p>Ajouter un commentaire</p>
+        <div class="divider"></div>
+        <div class="card lime lighten-5">
+            <form action="{% url 'project' projectname %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+             <div class="card-content">
+                <h5 class="card-title indigo-text text-darken-4">Add a comment</h5>
+                    {{ form }}
+             </div>
+            <div class="card-action" style="padding: 10px;">
+                <button class="btn waves-effect waves-light" type="submit" name="addComment">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+            </form>
+        </div>
     {#% endif %#}
 {% endblock %}
 
