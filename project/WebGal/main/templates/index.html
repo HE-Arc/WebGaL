@@ -32,7 +32,7 @@
 
 <!-- Page Layout here -->
 <div class="row">
-    <div class="col s3">
+    <div class="col s2">
         <!-- Grey navigation panel -->
         <div id="sidenav" style="padding: 20px;">
             {% block sidebar %}
@@ -41,15 +41,14 @@
         </div>
     </div>
 
-    <div class="leftborder col s9" style="padding: 5px;">
+    <div class="leftborder col s10" style="padding: 5px;">
         <!-- Teal page content  -->
         <div id="content">
             {% block content %}
             {% for project in allprojects %}
             <div class="card col s1 m3 indigo lighten-5" style="margin: 10px; padding: 20px; width: 31%;">
                 <div class="card-image">
-                    <img src="http://portfoliotheme.org/enigmatic/wp-content/uploads/sites/9/2012/07/placeholder1.jpg">
-                    <!--<img src="{{project.image}}">-->
+                    <img src="{{project.image}}">
                     <span class="card-title" style="padding: 5px; background:rgba(0, 30, 100, 0.5);"><a
                             href="{% url 'project' project.project_name %}">{{ project.project_name }}</a></span>
                 </div>
