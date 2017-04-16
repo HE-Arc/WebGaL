@@ -22,3 +22,10 @@ class Comment(models.Model):
     text = models.CharField(max_length=1000)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+class ProjectLikeUser(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    class Meta:
+        unique_together = ('project', 'user',)

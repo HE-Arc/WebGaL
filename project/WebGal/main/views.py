@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Project, Comment
+from .models import Project, Comment, ProjectLikeUser
 from .forms import UploadProject,AddComment
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -10,6 +10,18 @@ import zipfile
 
 def index(request):
     allprojects = Project.objects.all().order_by('-pub_date')
+    if request.method == 'POST':
+        if 'like' in request.POST:
+            project_id = int(request.POST.get('project_id'))
+            user_id = int(request.POST.get('user_id'))
+            if not ProjectLikeUser.objects.filter(project_id= project_id,user_id=user_id).exists():
+                project = Project.objects.get(pk=project_id)
+                project.likes += 1
+                project.save()
+
+                projectLikeUser = ProjectLikeUser(project_id=project_id,user_id=user_id)
+                projectLikeUser.save()
+
     context = {"allprojects": allprojects}
     return render(request, 'index.html', context)
 
