@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Project
+from .models import Project, Comment
 from .forms import UploadProject
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -15,7 +15,9 @@ def index(request):
 
 
 def project(request, projectname):
-    context = {"projectname": projectname, "username": request.user}
+    id = Project.objects.get(project_name=projectname)
+    comments = Comment.objects.filter(project_id=id).order_by('-pub_date')
+    context = {"projectname": projectname, "username": request.user, "comments":comments}
     return render(request, 'project.html', context)
 
 

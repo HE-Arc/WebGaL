@@ -1,5 +1,26 @@
 {% extends 'index.html' %}
 
+{% block sidebar %}
+    {#% if user.is_authenticated %#}
+        <h5>Comments</h5>
+        {% for comment in comments %}
+            <div class="card indigo lighten-5">
+                <div class="card-content">
+                  <span class="card-title  indigo-text text-darken-4">{{ comment.pub_date }}</span>
+                    <p>{{ comment.text }}</p>
+                </div>
+                <div class="card-action">
+                   <blockquote>
+                        By: <a href="{% url 'profile' project.user %}">{{comment.user}}</a>
+                    </blockquote>
+                </div>
+            </div>
+        {% endfor %}
+        <!-- Work in progres -->
+        <p>Ajouter un commentaire</p>
+    {#% endif %#}
+{% endblock %}
+
 {% block content %}
 
 <iframe id="encoder_iframe" height="870px" width="100%%" src="/media/{{username}}/{{projectname}}">
