@@ -9,6 +9,12 @@ import zipfile
 
 
 def index(request):
+    if request.method == 'POST':
+        if 'like' in request.POST:
+            project_id = int(request.POST.get('project_id'))
+            project = Project.objects.get(pk=project_id)
+            project.likes += 1
+            project.save()
     allprojects = Project.objects.all().order_by('-pub_date')
     context = {"allprojects": allprojects}
     return render(request, 'index.html', context)

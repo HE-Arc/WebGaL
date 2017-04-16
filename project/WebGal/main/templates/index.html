@@ -61,6 +61,8 @@
                 </div>
                 <div class="card-action" style="padding: 7px;">
                     <form method="post" action="{% url 'index' %}">
+                         {% csrf_token %}
+                        <input type="hidden" name="project_id" value="{{project.id}}" />
                         <button class="btn waves-effect waves-light" type="submit" name="like"
                                 {% if not user.is_authenticated %} disabled {% endif %}>Like
                             <i class="small material-icons left">thumb_up</i>
