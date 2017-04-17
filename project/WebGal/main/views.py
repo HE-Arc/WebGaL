@@ -41,9 +41,10 @@ def project(request, projectname):
             comment_id = int(request.POST.get('comment_id'))
             comment = Comment.objects.get(id=comment_id)
             comment.delete()
+
     comments = Comment.objects.filter(project_id=id).order_by('-pub_date')
     form = AddComment()
-    context = {"projectname": projectname, "userid": request.user.id, "comments":comments, "form":form}
+    context = {"projectname": projectname, "comments":comments, "form":form}
     return render(request, 'project.html', context)
 
 

@@ -9,19 +9,17 @@
                   <span class="card-title  indigo-text text-darken-4">{{ comment.pub_date }}</span>
                     <p>{{ comment.text }}</p>
                 </div>
-                <div class="card-action" style="padding:5px;">
-                   <blockquote>
+                <div class="card-action leftborder" style="padding:5px;">
                         By: <a href="{% url 'profile' project.user %}">{{comment.user}}</a>
-                       {% if userid == comment.user_id %}
-                            <form action="{% url 'project' projectname %}" method="post" enctype="multipart/form-data">
+                       {% if user.id == comment.user_id %}
+                            <form action="{% url 'project' projectname %}" method="post" enctype="multipart/form-data" style="padding-top: 10px;">
                                 {% csrf_token %}
                                 <input type="hidden" name="comment_id" value="{{comment.id}}" />
-                                <button class="btn-floating btn waves-effect waves-light red" type="submit" name="deleteComment">
+                                <button class="btn-floating btn waves-effect waves-light red" type="submit" name="deleteComment" >
                                     <i class="material-icons right">delete</i>
                                 </button>
                             </form>
                          {% endif %}
-                    </blockquote>
                 </div>
             </div>
         {% endfor %}
