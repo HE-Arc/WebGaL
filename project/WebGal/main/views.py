@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Project, Comment, ProjectLikeUser
+from .models import Project, ProjectLikeUser
+from django_comments.models import Comment
 from .forms import UploadProject,AddComment
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+
 import os
 import zipfile
-
 
 def index(request):
     allprojects = Project.objects.all().order_by('-pub_date')
@@ -27,25 +29,24 @@ def index(request):
 
 
 def project(request, projectname):
-    id = Project.objects.get(project_name=projectname)
+    project = Project.objects.get(project_name=projectname)
     if request.method == 'POST':
-        if 'addComment' in request.POST:
-            form = AddComment(request.POST)
-            if form.is_valid():
-                comment = Comment(pub_date=timezone.now(),
-                                  text=request.POST.get('text'),
-                                  project=id,
-                                  user=request.user)
-                comment.save()
+        #Useless for now !!
         if 'deleteComment' in request.POST:
             comment_id = int(request.POST.get('comment_id'))
             comment = Comment.objects.get(id=comment_id)
             comment.delete()
-
-    comments = Comment.objects.filter(project_id=id).order_by('-pub_date')
-    form = AddComment()
-    context = {"projectname": projectname, "comments":comments, "form":form}
+    context = {"project": project}
     return render(request, 'project.html', context)
+
+def comment_posted( request ):
+    if request.GET['c']:
+        comment_id = request.GET['c']  # B
+        comment = Comment.objects.get(pk=comment_id)
+        project = Project.objects.get(id=comment.object_pk)  # C
+        if project:
+            return HttpResponseRedirect(project.get_absolute_url())  # D
+    return HttpResponseRedirect("/")
 
 
 def handle_project_files(user, projectname, files):
