@@ -17,3 +17,5 @@ django-registration
 Pillow==4.0.0
 
 django-sslify
+
+django-contrib-comments

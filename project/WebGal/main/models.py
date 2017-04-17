@@ -16,12 +16,8 @@ class Project(models.Model):
     image = models.ImageField(upload_to=upload_to)
     files = models.FileField(upload_to=upload_to)
 
-
-class Comment(models.Model):
-    pub_date = models.DateTimeField('date published')
-    text = models.CharField(max_length=1000)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    def get_absolute_url(self):
+        return "/project/Projet %i/" % self.id
 
 
 class ProjectLikeUser(models.Model):
