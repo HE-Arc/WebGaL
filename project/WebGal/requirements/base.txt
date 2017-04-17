@@ -15,5 +15,3 @@ django-multiupload
 django-registration
 
 Pillow==4.0.0
-
-django-sslify
