@@ -69,8 +69,8 @@
                             <i class="small material-icons left">thumb_up</i>
                             {{project.likes}}
                         </button>
-                        <div class="sharethis-inline-share-buttons" {% if not user.is_authenticated %} style="pointer-events:none;opacity:0.4;" {% endif %}></div>
                     </form>
+                    <div class="sharethis-inline-share-buttons" {% if not user.is_authenticated %} style="pointer-events:none;opacity:0.4;" {% endif %}></div>
                 </div>
             </div>
             {% endfor %}
