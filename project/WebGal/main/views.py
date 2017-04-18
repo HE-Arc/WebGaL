@@ -4,29 +4,32 @@ from .models import Project, ProjectLikeUser
 from django_comments.models import Comment
 from .forms import UploadProject,AddComment
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_POST
 
 import os
 import zipfile
 
 def index(request):
     allprojects = Project.objects.all().order_by('-pub_date')
-    if request.method == 'POST':
-        if 'like' in request.POST:
-            project_id = int(request.POST.get('project_id'))
-            user_id = int(request.POST.get('user_id'))
-            if not ProjectLikeUser.objects.filter(project_id= project_id,user_id=user_id).exists():
-                project = Project.objects.get(pk=project_id)
-                project.likes += 1
-                project.save()
-
-                projectLikeUser = ProjectLikeUser(project_id=project_id,user_id=user_id)
-                projectLikeUser.save()
-
     context = {"allprojects": allprojects}
     return render(request, 'index.html', context)
 
+@login_required
+@require_POST
+def like(request):
+    project_id = int(request.POST.get('project_id'))
+    user_id = int(request.POST.get('user_id'))
+    if not ProjectLikeUser.objects.filter(project_id= project_id,user_id=user_id).exists():
+        project = Project.objects.get(pk=project_id)
+        project.likes += 1
+        project.save()
+
+        projectLikeUser = ProjectLikeUser(project_id=project_id,user_id=user_id)
+        projectLikeUser.save()
+    return HttpResponse()
 
 def project(request, projectname):
     project = Project.objects.get(project_name=projectname)
