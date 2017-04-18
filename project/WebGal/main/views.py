@@ -53,7 +53,7 @@ def project(request, projectname):
             comment_id = int(request.POST.get('comment_id'))
             comment = Comment.objects.get(id=comment_id)
             comment.delete()
-    context = {"project": project}
+    context = {"project": project, "DEBUG": settings.DEBUG}
     return render(request, 'project.html', context)
 
 
@@ -62,7 +62,6 @@ def projectiframe(request, userid, project, *args):
         path = settings.MEDIA_ROOT + '/media/' + userid + '/' + project
     else:
         path = settings.MEDIA_ROOT + '/' + userid + '/' + project
-    print(userid + ' ' + project + ' ' + args[0])
     if args[0] == '':
         return render(request, path + '/index.html')
     else:
@@ -80,7 +79,10 @@ def comment_posted(request):
 
 
 def handle_project_files(user, projectname, files):
-    directory = settings.MEDIA_ROOT + '/media/' + str(user.id) + '/' + projectname
+    if 'media' not in settings.MEDIA_ROOT:
+        directory = settings.MEDIA_ROOT + '/media/' + str(user.id) + '/' + projectname
+    else:
+        directory = settings.MEDIA_ROOT + str(user.id) + '/' + projectname
     zip_ref = zipfile.ZipFile(directory + '/' + str(files), 'r')
     zip_ref.extractall(directory)
     zip_ref.close()

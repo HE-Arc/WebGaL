@@ -56,8 +56,11 @@
 {% endblock %}
 
 {% block content %}
-
+{% if DEBUG %}
 <iframe id="encoder_iframe" height="870px" width="100%" src="{% url 'projectiframe' project.user.id project.project_name filename %}">
 </iframe>
-
+{% else %}
+<iframe id="encoder_iframe" height="870px" width="100%" src="/media/{{user.id}}/{{project.project_name}}/index.html">
+</iframe>
+{% endif %}
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block sidebar %}
 {#% if user.is_authenticated %#}
-<a class="waves-effect waves-light btn-large col s12" href="{% url 'upload' username%}"><i class="material-icons left">call_made</i>Upload</a>
+<a class="waves-effect waves-light btn-large col s12" href="{% url 'upload' user %}"><i class="material-icons left">call_made</i>Upload</a>
 {#% endif %#}
 {% endblock %}
 
