@@ -47,12 +47,6 @@ def like(request):
 
 def project(request, projectname):
     project = Project.objects.get(project_name=projectname)
-    if request.method == 'POST':
-        # Useless for now !!
-        if 'deleteComment' in request.POST:
-            comment_id = int(request.POST.get('comment_id'))
-            comment = Comment.objects.get(id=comment_id)
-            comment.delete()
     context = {"project": project, "DEBUG": settings.DEBUG}
     return render(request, 'project.html', context)
 
