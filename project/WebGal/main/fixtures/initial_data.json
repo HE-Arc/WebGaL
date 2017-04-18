@@ -6,8 +6,8 @@
 
   {"model": "main.project", "pk": 1, "fields": {"project_name": "Projet 1", "pub_date": "1995-01-18T14:05:58Z", "likes": 8319, "shares": 2739, "user": 1}},
   {"model": "main.project", "pk": 2, "fields": {"project_name": "Projet 2", "pub_date": "1971-07-23T04:52:09Z", "likes": 14945, "shares": 25052, "user": 4}},
-  {"model": "main.project", "pk": 3, "fields": {"project_name": "Projet 3", "pub_date": "2016-11-01T18:48:53Z", "likes": -1335, "shares": 17918, "user": 2}},
-  {"model": "main.project", "pk": 4, "fields": {"project_name": "Projet 4", "pub_date": "1985-12-30T08:45:46Z", "likes": -8375, "shares": -22770, "user": 4}},
+  {"model": "main.project", "pk": 3, "fields": {"project_name": "Projet 3", "pub_date": "2016-11-01T18:48:53Z", "likes": 1335, "shares": 17918, "user": 2}},
+  {"model": "main.project", "pk": 4, "fields": {"project_name": "Projet 4", "pub_date": "1985-12-30T08:45:46Z", "likes": 8375, "shares": -22770, "user": 4}},
   {"model": "main.project", "pk": 5, "fields": {"project_name": "Projet 5", "pub_date": "1980-01-27T22:58:09Z", "likes": 858, "shares": 9863, "user": 3}},
 
   {"model": "main.comment", "pk": 1, "fields": {"pub_date": "1984-11-07T03:27:04Z", "text": "Quae placeat odit hic minus. Fuga recusandae delectus dolores aut.", "project": 3, "user": 1}},
