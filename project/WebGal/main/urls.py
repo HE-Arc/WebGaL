@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
                   url(r'^$', views.index, name='index'),
                   url(r'^project/([0-9a-zA-Z\s-]*)/$', views.project, name='project'),
+                  url(r'^project/like$', views.like, name='like'),
                   url(r'^upload/([0-9a-zA-Z\s-]*)/$', views.upload, name='upload'),
                   url(r'^profile/([0-9a-zA-Z\s-]*)/$', views.profile, name='profile'),
                   url(r'^comments/posted/$', views.comment_posted),
