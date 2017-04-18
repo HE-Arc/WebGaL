@@ -3,6 +3,22 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+<div class="card-panel red lighten-4" style="margin: 5px 10px; padding: 7px;">
+    <p><strong>Pay attention please.</strong> In order to upload your projects, we need you to follow the next rules :</p>
+    <ul style="padding-left:15px;">
+        <li>Thumbnail file format : JPEG</li>
+        <li>File format : ZIP</li>
+        <li>The ZIP MUST contains following files :
+        <ul style="padding-left: 30px;">
+            <li>index.html containing <strong>only relative references</strong></li>
+            <li>All the other files (css,js) must be contained in folders that are in the same folder as index.html.</li>
+            <li>Example :   index.html</li>
+            <li style="padding-left: 70px;">--------> DATA/</li>
+            <li style="padding-left: 100px;">-------->  js/</li>
+            <li style="padding-left: 130px;">--------> myclasses.js</li>
+        </ul></li>
+    </ul>
+</div>
 <form action="{% url 'upload' username %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
