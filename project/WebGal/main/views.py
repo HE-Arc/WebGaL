@@ -102,7 +102,6 @@ def upload(request, username):
                               files=request.FILES.get('attachments'),
                               user=request.user)
             project.save()
-            print(request.FILES.get('attachments'))
             handle_project_files(request.user, request.POST.get('project_name'), request.FILES.get('attachments'))
             return render(request, 'profile.html', {"username": username})
         else:
