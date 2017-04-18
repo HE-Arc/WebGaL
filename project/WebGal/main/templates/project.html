@@ -57,7 +57,7 @@
 
 {% block content %}
 
-<iframe id="encoder_iframe" height="870px" width="100%%" src="/media/{{userid}}/{{project.project_name}}">
+<iframe id="encoder_iframe" height="870px" width="100%" src="{% url 'projectiframe' project.user.id project.project_name filename %}">
 </iframe>
 
 {% endblock %}

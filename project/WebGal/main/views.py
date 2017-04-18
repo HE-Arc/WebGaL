@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Project, ProjectLikeUser
 from django_comments.models import Comment
-from .forms import UploadProject,AddComment
+from .forms import UploadProject, AddComment
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -10,18 +10,19 @@ from django.http import HttpResponseRedirect
 import os
 import zipfile
 
+
 def index(request):
     allprojects = Project.objects.all().order_by('-pub_date')
     if request.method == 'POST':
         if 'like' in request.POST:
             project_id = int(request.POST.get('project_id'))
             user_id = int(request.POST.get('user_id'))
-            if not ProjectLikeUser.objects.filter(project_id= project_id,user_id=user_id).exists():
+            if not ProjectLikeUser.objects.filter(project_id=project_id, user_id=user_id).exists():
                 project = Project.objects.get(pk=project_id)
                 project.likes += 1
                 project.save()
 
-                projectLikeUser = ProjectLikeUser(project_id=project_id,user_id=user_id)
+                projectLikeUser = ProjectLikeUser(project_id=project_id, user_id=user_id)
                 projectLikeUser.save()
 
     context = {"allprojects": allprojects}
@@ -31,7 +32,7 @@ def index(request):
 def project(request, projectname):
     project = Project.objects.get(project_name=projectname)
     if request.method == 'POST':
-        #Useless for now !!
+        # Useless for now !!
         if 'deleteComment' in request.POST:
             comment_id = int(request.POST.get('comment_id'))
             comment = Comment.objects.get(id=comment_id)
@@ -39,7 +40,20 @@ def project(request, projectname):
     context = {"project": project}
     return render(request, 'project.html', context)
 
-def comment_posted( request ):
+
+def projectiframe(request, userid, project, *args):
+    if 'media' not in settings.MEDIA_ROOT:
+        path = settings.MEDIA_ROOT + '/media/' + userid + '/' + project
+    else:
+        path = settings.MEDIA_ROOT + '/' + userid + '/' + project
+    print(userid + ' ' + project + ' ' + args[0])
+    if args[0] == '':
+        return render(request, path + '/index.html')
+    else:
+        return render(request, path + '/' + args[0])
+
+
+def comment_posted(request):
     if request.GET['c']:
         comment_id = request.GET['c']  # B
         comment = Comment.objects.get(pk=comment_id)

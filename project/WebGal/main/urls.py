@@ -10,7 +10,9 @@ urlpatterns = [
                   url(r'^profile/([0-9a-zA-Z\s-]*)/$', views.profile, name='profile'),
                   url(r'^comments/posted/$', views.comment_posted),
                   url(r'^comments/', include('django_comments.urls')),
+                  url(r'^projectiframe/([0-9a-zA-Z\s-]*)/([0-9a-zA-Z\s-]*)/([0-9a-zA-Z\./\s-]*)', views.projectiframe,
+                      name='projectiframe')
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT+'/media/')
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT + '/media/')

@@ -117,7 +117,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'DIRS': [
             root('templates'), TEMPLATE_PATH,
-            os.path.join(os.path.dirname(os.path.dirname(PROJECT_PATH)), r'main/media')
+            os.path.join(os.path.dirname(os.path.dirname(PROJECT_PATH)), MEDIA_ROOT + '/media/')
         ],
         'OPTIONS': {
             'debug': DEBUG,
