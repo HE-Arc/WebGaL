@@ -14,7 +14,7 @@
         <p>{{ comment.comment }}</p>
     </div>
     <div class="card-action leftborder" style="padding:5px;">
-        By: <a href="{% url 'profile' project.user %}">{{comment.user_name}}</a>
+        By: <a href="{% url 'profile' comment.user_name %}">{{comment.user_name}}</a>
         {% if user.id == comment.user_id %}
         <!--
         <form action="{% url 'project' project.project_name %}" method="post" style="padding-top: 10px;">
