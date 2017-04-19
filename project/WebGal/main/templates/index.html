@@ -60,7 +60,7 @@
                     </blockquote>
                 </div>
                 <div class="card-action" style="padding: 7px;">
-                    <form method="post" action="{% url 'index' %}">
+                    <form class='like' method="post" action="{% url 'index' %}">
                          {% csrf_token %}
                         <input type="hidden" name="project_id" value="{{project.id}}" />
                         <input type="hidden" name="user_id" value="{{user.id}}" />
@@ -91,7 +91,7 @@
     {% block javascript %}
 
     <script>
-    $("form").on('submit' , function(e){
+    $(".like").on('submit' , function(e){
       e.preventDefault();     //empêche le comportement par défaut du navigateur => POST
 
       var $this = $(this);    // L'objet jQuery du formulaire
