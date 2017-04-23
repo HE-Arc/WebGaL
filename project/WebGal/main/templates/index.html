@@ -49,6 +49,7 @@
             {% for project in allprojects %}
             <div class="card col s12 m3 indigo lighten-5" style="margin: 10px; padding: 20px; width: 31%;">
                 <div class="card-image">
+                    {# SELECT N+1 #}
                     <img src="/media/{{project.user.id}}/{{project.project_name}}/thumbnail.jpg">
                     <span class="card-title" style="padding: 5px; background:rgba(0, 30, 100, 0.5);"><a
                             href="{% url 'project' project.project_name %}">{{ project.project_name }}</a></span>
@@ -99,6 +100,7 @@
       // Je récupère les valeurs$
       var $project_id = $($this).find("input[name=project_id]").val();
       var $user_id = $($this).find("input[name=user_id]").val();
+      // XXX $this n'est pas assez jQuery alors, on en remet une couche, au cas où.
 
       $.ajax({
              type: $this.attr('method'),
@@ -106,7 +108,8 @@
              data: {'project_id': $project_id,
                     'user_id': $user_id,
                     'csrfmiddlewaretoken': '{{ csrf_token }}'},
-             dataType: "json"})})
+        dataType: "json"})})
+      // XXX et le résultat? osef?
     </script>
 
     {% endblock %}
