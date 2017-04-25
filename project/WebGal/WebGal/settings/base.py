@@ -97,14 +97,14 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = os.path.join(PROJECT_PATH, 'main/static')
+STATIC_ROOT = os.path.join(PROJECT_PATH, '../main/static')
 
 STATIC_URL = '/static/'
 
 # Additional locations of static files
 
 STATICFILES_DIRS = (
-    root('assets'), os.path.join(BASE_DIR, "main/static"),
+    root('assets'), os.path.join(BASE_DIR, "../main/static"),
 
 )
 MEDIA_URL = '/media/'
@@ -159,6 +159,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # .local.py overrides all the common settings.
 try:
     from .local import *  # noqa
+
+
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE_CLASSES.insert(
+        0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 except ImportError:
     pass
 
